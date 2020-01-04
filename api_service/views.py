@@ -60,3 +60,31 @@ class DatasetDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = models.DatasetModel.objects.all()
     serializer_class = serializers.DatasetSerializer
+
+
+@api_view(['GET'])
+def export_data(request, pk, export_type):
+    try:
+        export_type = export_type.lower()
+        if export_type not in ('excel', 'stats', 'plot'):
+            raise Exception('Bad format requested.')
+
+        dataset = models.DatasetModel.objects.get(pk=pk)
+        data = {'success': True, 'data': 'Still being processed.'}
+        resp_status = status.HTTP_200_OK
+
+        if export_type == 'excel' and dataset.excel_creation_status == 'CRT':
+            data = {'success': True, 'data': f'{dataset.excel_url}'}
+
+        if export_type == 'stats' and dataset.stats_creation_status == 'CRT':
+            data = {'success': True, 'data': f'{dataset.stats}'}
+
+        if export_type == 'plot' and dataset.pdf_creation_status == 'CRT':
+            data = {'success': True, 'data': f'{dataset.pdf_url}'}
+
+    except Exception as e:
+        data = {'success': False, 'message': f'Error: {str(e)}'}
+        resp_status = status.HTTP_400_BAD_REQUEST
+
+    finally:
+        return Response(data=data, status=resp_status)

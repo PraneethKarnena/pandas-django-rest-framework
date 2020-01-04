@@ -8,7 +8,6 @@ class DatasetModel(models.Model):
 
     STATUS_CHOICES = (
         ('PEN', 'Pending'),
-        ('ERR', 'Error'),
         ('CRT', 'Created'),
         ('NOR', 'Not Requested'),
     )

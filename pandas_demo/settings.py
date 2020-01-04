@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework', # DRF for API service
+    'api_service.apps.ApiServiceConfig', # API service
 ]
 
 MIDDLEWARE = [

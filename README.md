@@ -19,6 +19,8 @@ This project depends on Celery and RabbitMQ. Please follow the links below for c
 
 * Clone - `git clone`
 
+* Set environment variables from `ENV_VARS.txt` file
+
 * Install requirements - `pip install -r requirements.txt`
 
 * Run database ops:

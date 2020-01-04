@@ -4,4 +4,5 @@ from api_service import views
 
 urlpatterns = [
     path('datasets/', views.datasets_view),
+    path('datasets/<int:pk>/', views.DatasetDetailView.as_view()),
 ]

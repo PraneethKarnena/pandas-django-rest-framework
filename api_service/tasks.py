@@ -33,12 +33,11 @@ def save_dataframe(dataset_id):
     dataset.save()
 
     # Process further
-    export_excel.delay(dataset_id)
-    export_json.delay(dataset_id)
-    export_histogram_pdf.delay(dataset_id)
+    export_excel(dataset_id)
+    export_json(dataset_id)
+    export_histogram_pdf(dataset_id)
 
 
-@shared_task
 def export_excel(dataset_id):
     dataset = get_dataset(dataset_id)
     data = pd.read_feather(dataset.dataframe_file_name)
@@ -56,7 +55,6 @@ def export_excel(dataset_id):
     dataset.save()
 
 
-@shared_task
 def export_json(dataset_id):
     dataset = get_dataset(dataset_id)
     data = pd.read_feather(dataset.dataframe_file_name)
@@ -65,12 +63,11 @@ def export_json(dataset_id):
     json_data = df.describe().to_json()
 
     # Save json details
-    dataset.stats = json.dumps(json_data)
+    dataset.stats = json_data
     dataset.stats_creation_status = 'CRT'
     dataset.save()
 
 
-@shared_task
 def export_histogram_pdf(dataset_id):
     dataset = get_dataset(dataset_id)
     data = pd.read_feather(dataset.dataframe_file_name)

@@ -4,6 +4,7 @@
 .python-version
 **/ENV/**
 **/media/**
+**/exports/**
 
 # Ignore socket files
 **/**.sock

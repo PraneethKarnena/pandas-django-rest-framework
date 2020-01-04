@@ -15,15 +15,18 @@ class DatasetModel(models.Model):
 
     dataframe_file_name = models.TextField(null=True, blank=True)
     dataframe_creation_status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PEN')
+    dataframe_url = models.URLField(null=True, blank=True)
 
     excel_file_name = models.TextField(null=True, blank=True)
     excel_creation_status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='NOR')
+    excel_url = models.URLField(null=True, blank=True)
 
     stats = models.TextField(null=True, blank=True)
     stats_creation_status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='NOR')
 
     pdf_file_name = models.TextField(null=True, blank=True)
     pdf_creation_status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='NOR')
+    pdf_url = models.URLField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 

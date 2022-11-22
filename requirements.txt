@@ -29,7 +29,7 @@ more-itertools==8.0.2
 numpy==1.18.0
 openpyxl==3.0.2
 pandas==0.25.3
-Pillow==7.0.0
+Pillow==9.3.0
 pyarrow==0.15.1
 Pygments==2.5.2
 pylint==2.4.4
